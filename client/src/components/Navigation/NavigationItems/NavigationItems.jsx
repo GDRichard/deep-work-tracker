@@ -22,7 +22,7 @@ const navigationItems = ({
    */
   const handleLogoutRequest = () => {
     axios
-      .delete("http://localhost:3001/api/logout", { withCredentials: true })
+      .delete("/api/logout", { withCredentials: true })
       .then((response) => {
         // Set to false to close burger menu in case user is on mobile
         setIsBurgerMenuOpen(false);

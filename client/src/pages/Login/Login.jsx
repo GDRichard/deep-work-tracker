@@ -20,7 +20,7 @@ const Login = ({ history }) => {
 
     axios
       .post(
-        "http://localhost:3001/api/login",
+        "/api/login",
         { email, password, remember_me },
         { withCredentials: true }
       )

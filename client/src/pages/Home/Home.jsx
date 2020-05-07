@@ -83,7 +83,7 @@ const Home = () => {
   const saveUserDeepWorkSession = async () => {
     try {
       await axios.post(
-        "http://localhost:3001/api/deep_work_sessions",
+        "/api/deep_work_sessions",
         { time_in_seconds: workTimerDuration * 60 },
         { withCredentials: true }
       );

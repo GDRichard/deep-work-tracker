@@ -12,7 +12,7 @@ const useAuthentication = () => {
 
   const getLoggedInStatus = () => {
     axios
-      .get("http://localhost:3001/api/logged_in_status", {
+      .get("/api/logged_in_status", {
         withCredentials: true,
       })
       .then((response) => {

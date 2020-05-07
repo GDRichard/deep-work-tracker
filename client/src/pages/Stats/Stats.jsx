@@ -26,7 +26,7 @@ const Stats = React.memo(() => {
 
   const getUserDeepWorkData = () => {
     axios
-      .get("http://localhost:3001/api/deep_work_sessions", {
+      .get("/api/deep_work_sessions", {
         withCredentials: true,
       })
       .then((response) => {

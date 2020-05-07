@@ -24,7 +24,7 @@ const Register = ({ history }) => {
      */
     axios
       .post(
-        "http://localhost:3001/api/register",
+        "/api/register",
         {
           email,
           password,
