@@ -1,0 +1,40 @@
+.ToggleButtons button {
+  border: none;
+  height: 45px;
+  width: 135px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 50px auto 10px auto;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.ToggleButtons button:focus {
+  outline: none;
+}
+
+.Inactive {
+  background-color: #e7e7e7;
+  color: black;
+}
+
+.Active {
+  background-color: #333;
+  color: white;
+}
+
+.ToggleButtons button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+.ToggleButtons button:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.ToggleButtons button:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}

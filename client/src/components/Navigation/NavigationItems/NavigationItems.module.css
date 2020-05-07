@@ -1,0 +1,31 @@
+.NavigationList li {
+  display: inline-block;
+  list-style: none;
+  padding: 0 20px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2em;
+}
+
+li a:hover {
+  border-bottom: 2px solid white;
+}
+
+.FlexRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.FlexColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.FlexColumn li {
+  width: 100%;
+}

@@ -1,0 +1,24 @@
+.Stats {
+  text-align: center;
+}
+
+.Stats p {
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+.Stats a {
+  font-size: 20px;
+  color: #0066cc;
+  border-bottom: 2px solid #0066cc;
+}
+
+.Stats a:hover {
+  color: #003366;
+  border-bottom: 2px solid #003366;
+}
+
+.Stats h3 {
+  font-weight: normal;
+  margin-top: 20px;
+}

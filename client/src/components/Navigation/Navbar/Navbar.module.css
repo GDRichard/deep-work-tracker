@@ -1,0 +1,31 @@
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #333;
+  padding: 0 10px 0 10px;
+  height: 60px;
+}
+
+.Navbar h1 {
+  font-size: 1.2rem;
+  margin-left: 20px;
+}
+
+.Navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 599px) {
+  .Navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 599px) {
+  .DesktopOnly {
+    display: none;
+  }
+}

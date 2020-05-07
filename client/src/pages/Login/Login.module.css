@@ -1,0 +1,43 @@
+.LoginContainer {
+  width: 270px;
+  margin: 0 auto;
+}
+
+.LoginContainer h1 {
+  text-align: center;
+}
+
+.Links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.Links,
+.Links li {
+  padding: 0;
+  list-style: none;
+}
+
+.Links a {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.Links a:hover {
+  border-bottom: 2px solid black;
+}
+
+.LoginContainer input[type="text"],
+input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 16px 0px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.LoginContainer li {
+  color: red;
+}

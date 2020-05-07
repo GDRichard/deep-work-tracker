@@ -1,0 +1,43 @@
+.Timer {
+  font-size: 6rem;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+}
+
+.TimerButtons button {
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 4px;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 85px;
+  height: 45px;
+}
+
+.ButtonStart {
+  background-color: #108810;
+}
+
+.ButtonStart:hover {
+  background-color: #107831;
+}
+
+.ButtonStop {
+  background-color: #f44346;
+}
+
+.ButtonStop:hover {
+  background-color: #dc3030;
+}
+
+.ButtonReset {
+  background-color: #008cba;
+}
+
+.ButtonReset:hover {
+  background-color: #007caa;
+}

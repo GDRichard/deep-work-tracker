@@ -1,0 +1,22 @@
+.RegisterContainer {
+  width: 270px;
+  margin: 0 auto;
+}
+
+.RegisterContainer h1 {
+  text-align: center;
+}
+
+.RegisterContainer input[type="text"],
+input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 16px 0px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.RegisterContainer li {
+  color: red;
+}
