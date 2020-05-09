@@ -16,7 +16,7 @@ timer is done, you will get a notification that your session is done. If you're
 logged in, the app will record the duration of your session and you can review
 your records in the Stats page.
 
-![The Day view in the Stats page](/assets/images/stats_day.png)
+![The Day view in the Stats page](/assets/images/stats.png)
 
 ## How to run locally
 
