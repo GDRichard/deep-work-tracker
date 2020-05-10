@@ -19,9 +19,10 @@ const BarChart = React.memo(({ data }) => {
       .range([margin.left, chartWidth - margin.right])
       .padding(0.1);
 
+    const yMax = d3.max(data, (d) => d.time);
     const yScale = d3
       .scaleLinear()
-      .domain([0, d3.max(data, (d) => d.time)])
+      .domain([0, Math.max(yMax, 5)])
       .range([chartHeight - margin.bottom, margin.top]);
 
     const xAxis = d3.axisBottom(xScale);
