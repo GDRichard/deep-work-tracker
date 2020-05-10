@@ -9,6 +9,8 @@ me focus and get into flow. I would then track these sessions in an excel file.
 My intent with Deep Work Tracker is to build an app that takes care of both of
 these things.
 
+**Note:** Deep Work Tracker is very much a work in progress. More to come!
+
 ## How it works
 
 Set the desired length of your deep work session and start the timer. Once the
