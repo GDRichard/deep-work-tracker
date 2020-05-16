@@ -25,4 +25,6 @@ your records in the Stats page.
 Once you've cloned the repo to your local directory of choice, open a terminal
 at the root of the project and run the command `bundle`. Once that's done,
 install the client dependencies by running the command `yarn --cwd client install`.
-Finally, enter `rake start` to start up the application.
+Finally, have two terminals open and run `rails s` in one and `yarn --cwd client start` 
+in the other. Alternatively, if you have the Heroku CLI installed, enter `rake start` 
+to run both commands simultaneously.
