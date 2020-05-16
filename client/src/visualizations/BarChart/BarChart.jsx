@@ -15,7 +15,7 @@ const BarChart = React.memo(({ data }) => {
   useEffect(() => {
     const xScale = d3
       .scaleBand()
-      .domain(data.map((d) => d.date))
+      .domain(data.map((d) => d.day_of_the_month))
       .range([margin.left, chartWidth - margin.right])
       .padding(0.1);
 
@@ -27,34 +27,43 @@ const BarChart = React.memo(({ data }) => {
 
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
+    d3.select(xAxisRef.current).call(xAxis);
+    d3.select(yAxisRef.current).call(yAxis);
 
     setBars(
       data.map((d) => {
         return {
-          x: xScale(d.date),
+          x: xScale(d.day_of_the_month),
           y: yScale(d.time),
           height: chartHeight - margin.bottom - yScale(d.time),
           width: xScale.bandwidth(),
+          date: d.date,
+          time: d.time,
         };
       })
     );
-
-    d3.select(xAxisRef.current).call(xAxis);
-    d3.select(yAxisRef.current).call(yAxis);
   }, [data]);
 
   return (
     <div className={classes.BarChart}>
       <svg width={chartWidth} height={chartHeight}>
-        {bars.map((bar, index) => (
-          <rect
-            key={index}
-            x={bar.x}
-            y={bar.y}
-            height={bar.height}
-            width={bar.width}
-          />
-        ))}
+        {bars.map((bar, index) => {
+          const barHours = Math.floor(bar.time / 60);
+          const barMinutes = bar.time % 60;
+
+          return (
+            <rect
+              key={index}
+              x={bar.x}
+              y={bar.y}
+              height={bar.height}
+              width={bar.width}
+            >
+              <title>{`${bar.date}: ${barHours}:${barMinutes}`}</title>
+            </rect>
+          );
+        })}
+
         <g
           ref={xAxisRef}
           transform={`translate(0, ${chartHeight - margin.bottom})`}

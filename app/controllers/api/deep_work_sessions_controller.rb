@@ -43,23 +43,24 @@ module Api
       # the time worked per day. 
       def get_deep_work_sessions_for_day_view
         results = current_user.deep_work_sessions.where(
-          "created_at < ? AND created_at > ?", Date.tomorrow, THIRTEEN_DAYS_AGO).to_a
+          "created_at < ? AND created_at > ?", Date.tomorrow, THIRTEEN_DAYS_AGO)
 
         # Calculate the total time worked per day.
         total_time_by_day = {}
         results.each do |row|
-          day = row.created_at.to_date.day
-          total_time_by_day[day] = 0 if total_time_by_day[day].nil?
-          total_time_by_day[day] += row.time_in_seconds / 60.seconds
+          date = row.created_at.to_date
+          total_time_by_day[date] = 0 if total_time_by_day[date].nil?
+          total_time_by_day[date] += row.time_in_seconds / 60.seconds
         end
 
         # Prepare hash for the front-end with the total time worked per the 
         # past 14 days.
         @deep_work_sessions_days = []
         (0..13).each do |i|
-          day = (THIRTEEN_DAYS_AGO + i).day
+          day = THIRTEEN_DAYS_AGO + i
           @deep_work_sessions_days[i] = { 
             date: day,
+            day_of_the_month: day.day,
             time: total_time_by_day[day].nil? ? 0 : total_time_by_day[day]
            }
         end
@@ -76,7 +77,7 @@ module Api
         total_time_by_week = {}
         results.each do |row|
           date = row.created_at.to_date
-          first_day_of_week = (date - date.wday).day
+          first_day_of_week = date - date.wday
           
           total_time_by_week[first_day_of_week] = 0 if 
             total_time_by_week[first_day_of_week].nil?
@@ -89,9 +90,12 @@ module Api
         # past 14 weeks.
         @deep_work_sessions_weeks = []
         (0..13).each do |i|
-          first_day_of_week = (THIRTEEN_WEEKS_AGO + (i * 7)).day
+          first_day_of_week = THIRTEEN_WEEKS_AGO + (i * 7)
+          last_day_of_week = first_day_of_week + 6
+
           @deep_work_sessions_weeks[i] = {
-            date: first_day_of_week,
+            date: "#{first_day_of_week} - #{last_day_of_week}",
+            day_of_the_month: first_day_of_week.day,
             time: total_time_by_week[first_day_of_week].nil? ? 
                   0 : total_time_by_week[first_day_of_week]
           }
