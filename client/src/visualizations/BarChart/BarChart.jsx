@@ -6,6 +6,9 @@ import classes from "./BarChart.module.css";
 const chartWidth = 650;
 const chartHeight = 400;
 const margin = { top: 20, right: 5, bottom: 20, left: 35 };
+const formatTime = d3.timeFormat("%H:%M");
+
+const formatMinutes = (minutes) => formatTime(new Date(2020, 0, 1, 0, minutes));
 
 const BarChart = React.memo(({ data }) => {
   const [bars, setBars] = useState([]);
@@ -26,7 +29,7 @@ const BarChart = React.memo(({ data }) => {
       .range([chartHeight - margin.bottom, margin.top]);
 
     const xAxis = d3.axisBottom(xScale);
-    const yAxis = d3.axisLeft(yScale);
+    const yAxis = d3.axisLeft(yScale).tickFormat(formatMinutes);
     d3.select(xAxisRef.current).call(xAxis);
     d3.select(yAxisRef.current).call(yAxis);
 
