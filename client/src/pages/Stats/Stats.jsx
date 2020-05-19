@@ -53,7 +53,7 @@ const Stats = React.memo(() => {
             handleToggle={handleToggle}
             activeButton={activeView}
           />
-          <h3>Deep Work time per {activeView}</h3>
+          <h3>Deep Work Time per {activeView}</h3>
           <BarChart data={deepWorkSessionsData[activeView]} />
         </>
       ) : (

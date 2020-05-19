@@ -7,8 +7,18 @@ const chartWidth = 650;
 const chartHeight = 400;
 const margin = { top: 20, right: 5, bottom: 20, left: 35 };
 const formatTime = d3.timeFormat("%H:%M");
+const dateFormat = d3.timeFormat("%b %d");
 
 const formatMinutes = (minutes) => formatTime(new Date(2020, 0, 1, 0, minutes));
+const formatDate = (date) => {
+  /* Workaround for JavaScript converting a Date object from a string to the
+   * date of the given string minus one (i.e., '2020-05-19' will be converted to
+   * '2020-05-18'). Passing the individual values of year, month and day
+   * as parameters avoids this issue.
+   */
+  const dateData = date.split("-");
+  return dateFormat(new Date(dateData[0], dateData[1] - 1, dateData[2]));
+};
 
 const BarChart = React.memo(({ data }) => {
   const [bars, setBars] = useState([]);
@@ -18,7 +28,7 @@ const BarChart = React.memo(({ data }) => {
   useEffect(() => {
     const xScale = d3
       .scaleBand()
-      .domain(data.map((d) => d.day_of_the_month))
+      .domain(data.map((d) => d.date))
       .range([margin.left, chartWidth - margin.right])
       .padding(0.1);
 
@@ -28,7 +38,7 @@ const BarChart = React.memo(({ data }) => {
       .domain([0, Math.max(yMax, 5)])
       .range([chartHeight - margin.bottom, margin.top]);
 
-    const xAxis = d3.axisBottom(xScale);
+    const xAxis = d3.axisBottom(xScale).tickFormat(formatDate);
     const yAxis = d3.axisLeft(yScale).tickFormat(formatMinutes);
     d3.select(xAxisRef.current).call(xAxis);
     d3.select(yAxisRef.current).call(yAxis);
@@ -36,11 +46,11 @@ const BarChart = React.memo(({ data }) => {
     setBars(
       data.map((d) => {
         return {
-          x: xScale(d.day_of_the_month),
+          x: xScale(d.date),
           y: yScale(d.time),
           height: chartHeight - margin.bottom - yScale(d.time),
           width: xScale.bandwidth(),
-          date: d.date,
+          titleDate: d.title_date,
           time: d.time,
         };
       })
@@ -59,11 +69,10 @@ const BarChart = React.memo(({ data }) => {
               height={bar.height}
               width={bar.width}
             >
-              <title>{`${bar.date}: ${formatMinutes(bar.time)}`}</title>
+              <title>{`${bar.titleDate}: ${formatMinutes(bar.time)}`}</title>
             </rect>
           );
         })}
-
         <g
           ref={xAxisRef}
           transform={`translate(0, ${chartHeight - margin.bottom})`}
