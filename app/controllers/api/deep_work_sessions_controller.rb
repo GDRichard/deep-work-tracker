@@ -60,8 +60,7 @@ module Api
           date = THIRTEEN_DAYS_AGO + i
           @deep_work_sessions_days[i] = { 
             date: date,
-            time: total_time_by_day[date].nil? ? 0 : total_time_by_day[date],
-            title_date: date 
+            time: total_time_by_day[date].nil? ? 0 : total_time_by_day[date]
            }
         end
       end
@@ -96,8 +95,7 @@ module Api
           @deep_work_sessions_weeks[i] = {
             date: first_day_of_week,
             time: total_time_by_week[first_day_of_week].nil? ? 
-                  0 : total_time_by_week[first_day_of_week],
-            title_date: "#{first_day_of_week} - #{last_day_of_week}"
+                  0 : total_time_by_week[first_day_of_week]
           }
         end
       end

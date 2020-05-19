@@ -6,24 +6,35 @@ import classes from "./BarChart.module.css";
 const chartWidth = 650;
 const chartHeight = 400;
 const margin = { top: 20, right: 5, bottom: 20, left: 35 };
-const formatTime = d3.timeFormat("%H:%M");
-const dateFormat = d3.timeFormat("%b %d");
+const weekView = "Week";
 
-const formatMinutes = (minutes) => formatTime(new Date(2020, 0, 1, 0, minutes));
-const formatDate = (date) => {
-  /* Workaround for JavaScript converting a Date object from a string to the
-   * date of the given string minus one (i.e., '2020-05-19' will be converted to
-   * '2020-05-18'). Passing the individual values of year, month and day
-   * as parameters avoids this issue.
-   */
-  const dateData = date.split("-");
-  return dateFormat(new Date(dateData[0], dateData[1] - 1, dateData[2]));
-};
-
-const BarChart = React.memo(({ data }) => {
+const BarChart = React.memo(({ data, activeView }) => {
   const [bars, setBars] = useState([]);
   const xAxisRef = useRef();
   const yAxisRef = useRef();
+  const dateFormat = d3.timeFormat("%b %d");
+  const timeFormat = d3.timeFormat("%H:%M");
+
+  const formatDate = (date) => dateFormat(stringToDate(date));
+  const formatMinutes = (minutes) =>
+    timeFormat(new Date(2020, 0, 1, 0, minutes));
+
+  const stringToDate = (date) => {
+    /* Workaround for JavaScript converting a Date object from a string to the
+     * date of the given string minus one (i.e., '2020-05-19' will be converted to
+     * '2020-05-18'). Passing the individual values of year, month and day
+     * as parameters avoids this issue.
+     */
+    const dateData = date.split("-");
+    return new Date(dateData[0], dateData[1] - 1, dateData[2]);
+  };
+
+  const addDaysToDate = (strDate, days) => {
+    const format = d3.timeFormat("%y-%m-%d");
+    const date = stringToDate(strDate);
+    date.setDate(date.getDate() + days);
+    return format(date);
+  };
 
   useEffect(() => {
     const xScale = d3
@@ -45,12 +56,17 @@ const BarChart = React.memo(({ data }) => {
 
     setBars(
       data.map((d) => {
+        let titleDate = `${d.date}`;
+        if (activeView === weekView) {
+          const endOfWeek = addDaysToDate(d.date, 6);
+          titleDate += ` - ${endOfWeek}`;
+        }
         return {
           x: xScale(d.date),
           y: yScale(d.time),
           height: chartHeight - margin.bottom - yScale(d.time),
           width: xScale.bandwidth(),
-          titleDate: d.title_date,
+          titleDate: `${titleDate}`,
           time: d.time,
         };
       })
