@@ -51,9 +51,6 @@ const BarChart = React.memo(({ data }) => {
     <div className={classes.BarChart}>
       <svg width={chartWidth} height={chartHeight}>
         {bars.map((bar, index) => {
-          const barHours = Math.floor(bar.time / 60);
-          const barMinutes = bar.time % 60;
-
           return (
             <rect
               key={index}
@@ -62,7 +59,7 @@ const BarChart = React.memo(({ data }) => {
               height={bar.height}
               width={bar.width}
             >
-              <title>{`${bar.date}: ${barHours}:${barMinutes}`}</title>
+              <title>{`${bar.date}: ${formatMinutes(bar.time)}`}</title>
             </rect>
           );
         })}
