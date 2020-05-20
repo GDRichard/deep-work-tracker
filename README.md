@@ -22,9 +22,11 @@ your records in the Stats page.
 
 ## How to run locally
 
-Once you've cloned the repo to your local directory of choice, open a terminal
-at the root of the project and run the command `bundle`. Once that's done,
-install the client dependencies by running the command `yarn --cwd client install`.
-Finally, have two terminals open and run `rails s` in one and `yarn --cwd client start` 
-in the other. Alternatively, if you have the Heroku CLI installed, enter `rake start` 
-to run both commands simultaneously.
+From the src directory:
+
+- Run `bundle`
+- Run `yarn --cwd client install`
+- If you have the Heroku CLI installed, run `rake start` - This will start up
+  both the Rails and React app
+  ..- If you don't have the Heroku CLI installed, then have two terminals open
+  and run `rails s` in one and `yarn --cwd client start` in the other
