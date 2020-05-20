@@ -28,5 +28,5 @@ From the src directory:
 - Run `yarn --cwd client install`
 - If you have the Heroku CLI installed, run `rake start` - This will start up
   both the Rails and React app
-  ..- If you don't have the Heroku CLI installed, then have two terminals open
+- If you don't have the Heroku CLI installed, then have two terminals open
   and run `rails s` in one and `yarn --cwd client start` in the other
